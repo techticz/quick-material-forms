@@ -4,27 +4,49 @@ apply plugin: 'kotlin-android-extensions'
 
 apply from: '../dependencies.gradle'
 
-ext.shard = 'forms'
-apply from: '../bintrayconfig.gradle'
+ext {
+    shard = 'core'
+    bintrayRepo = 'quick-material-forms' // your repo name
+    bintrayName = 'core' // has to be same as your library module name
+    publishedGroupId = 'com.gssirohi.materialforms' // your module package name
+    libraryName = 'core'
+    artifact = 'core' // has to be same as your library module name
+    libraryDescription = 'material form core components'
+    siteUrl = 'https://github.com/techticz/quick-material-forms'
+    gitUrl = 'https://github.com/techticz/quick-material-forms'
+    libraryVersion = versions.publishVersion
+    developerId = 'gssirohi'
+    developerName = 'Gyanendra Singh Sirohi'
+    developerEmail = 'gyanendra.s.sirohi@gmail.com'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 
 android {
     compileSdkVersion versions.compileSdk
     buildToolsVersion versions.buildTools
 
-    compileOptions {
+    /*compileOptions {
         if (modulePackageId != null && modulePackageId != '') {
             logger.warn('Package for current module: ' + modulePackageId)
             kotlinOptions.freeCompilerArgs += ['-module-name', modulePackageId]
         } else {
             logger.warn('Skipping setting compiler module name, no package to use.')
         }
-    }
+    }*/
 
     defaultConfig {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.compileSdk
         versionCode versions.publishVersionCode
         versionName versions.publishVersion
+    }
+    sourceSets {
+        main.res.srcDirs = [
+                'src/main/res',
+                'src/main/res-public'
+        ]
     }
 
     buildTypes {
@@ -52,4 +74,6 @@ repositories {
     mavenCentral()
 }
 
+apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/installv.gradle'
+apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/bintrayv.gradle'
 //apply from: '../spotless.gradle'
