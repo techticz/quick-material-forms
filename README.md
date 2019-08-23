@@ -11,16 +11,11 @@ It is a library which provide an easy way to build material forms with minimal c
 
 
 ```gradle
-allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
+
 
 dependencies {
   ...
-  implementation 'com.github.gssirohi:MaterialFormLibrary:Tag'
+  implementation 'com.gssirohi.materialforms:core:0.1'
 }
 ```
 
